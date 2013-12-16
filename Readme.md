@@ -1,7 +1,6 @@
-
 # Sldr
 
-  Another minimal slider just because default range UI is always difficult to tweak..
+  Just because default sliders are hard to touch and difficult to tweak.  
   
   ![](http://f.cl.ly/items/3V1j1T3C03301M202q04/sldr-crop.gif)
 
