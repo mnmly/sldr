@@ -1,0 +1,1 @@
+module.exports = '<div class="sldr">\n  <div class="wrap">\n    <div class="label-value"></div>\n    <div class="gauge"></div>\n  </div>\n  <div class="label-wrap">\n    <span class="label-min"></span><span class="label-max"></span>\n  </div>\n</div>\n';

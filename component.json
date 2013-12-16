@@ -1,0 +1,28 @@
+{
+  "name": "sldr",
+  "repo": "mnmly/sldr",
+  "description": "Another minimal slider just because default range UI is always difficult to tweak... :[",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/pad": "*",
+    "component/query": "*",
+    "component/domify": "*",
+    "component/emitter": "*",
+    "component/events": "*",
+    "mnmly/translate": "feature/percent",
+    "mnmly/constrain": "*"
+  },
+  "development": {
+    "chaijs/chai": "*"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js",
+    "template.js"
+  ],
+  "styles": [
+    "sldr.styl"
+  ]
+}
