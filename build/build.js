@@ -199,66 +199,6 @@ require.relative = function(parent) {
 
   return localRequire;
 };
-require.register("component-pad/index.js", Function("exports, require, module",
-"\n\
-/**\n\
- * Expose `pad()`.\n\
- */\n\
-\n\
-exports = module.exports = pad;\n\
-\n\
-/**\n\
- * Pad `str` to `len` with optional `c` char,\n\
- * favoring the left when unbalanced.\n\
- *\n\
- * @param {String} str\n\
- * @param {Number} len\n\
- * @param {String} c\n\
- * @return {String}\n\
- * @api public\n\
- */\n\
-\n\
-function pad(str, len, c) {\n\
-  c = c || ' ';\n\
-  if (str.length >= len) return str;\n\
-  len = len - str.length;\n\
-  var left = Array(Math.ceil(len / 2) + 1).join(c);\n\
-  var right = Array(Math.floor(len / 2) + 1).join(c);\n\
-  return left + str + right;\n\
-}\n\
-\n\
-/**\n\
- * Pad `str` left to `len` with optional `c` char.\n\
- *\n\
- * @param {String} str\n\
- * @param {Number} len\n\
- * @param {String} c\n\
- * @return {String}\n\
- * @api public\n\
- */\n\
-\n\
-exports.left = function(str, len, c){\n\
-  c = c || ' ';\n\
-  if (str.length >= len) return str;\n\
-  return Array(len - str.length + 1).join(c) + str;\n\
-};\n\
-\n\
-/**\n\
- * Pad `str` right to `len` with optional `c` char.\n\
- *\n\
- * @param {String} str\n\
- * @param {Number} len\n\
- * @param {String} c\n\
- * @return {String}\n\
- * @api public\n\
- */\n\
-\n\
-exports.right = function(str, len, c){\n\
-  c = c || ' ';\n\
-  if (str.length >= len) return str;\n\
-  return str + Array(len - str.length + 1).join(c);\n\
-};//@ sourceURL=component-pad/index.js"
-));
 require.register("component-query/index.js", Function("exports, require, module",
 "function one(selector, el) {\n\
   return el.querySelector(selector);\n\
@@ -529,7 +469,10 @@ Emitter.prototype.hasListeners = function(event){\n\
 //@ sourceURL=component-emitter/index.js"
 ));
 require.register("component-event/index.js", Function("exports, require, module",
-"\n\
+"var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',\n\
+    unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',\n\
+    prefix = bind !== 'addEventListener' ? 'on' : '';\n\
+\n\
 /**\n\
  * Bind `el` event `type` to `fn`.\n\
  *\n\
@@ -542,11 +485,8 @@ require.register("component-event/index.js", Function("exports, require, module"
  */\n\
 \n\
 exports.bind = function(el, type, fn, capture){\n\
-  if (el.addEventListener) {\n\
-    el.addEventListener(type, fn, capture || false);\n\
-  } else {\n\
-    el.attachEvent('on' + type, fn);\n\
-  }\n\
+  el[bind](prefix + type, fn, capture || false);\n\
+\n\
   return fn;\n\
 };\n\
 \n\
@@ -562,14 +502,10 @@ exports.bind = function(el, type, fn, capture){\n\
  */\n\
 \n\
 exports.unbind = function(el, type, fn, capture){\n\
-  if (el.removeEventListener) {\n\
-    el.removeEventListener(type, fn, capture || false);\n\
-  } else {\n\
-    el.detachEvent('on' + type, fn);\n\
-  }\n\
+  el[unbind](prefix + type, fn, capture || false);\n\
+\n\
   return fn;\n\
-};\n\
-//@ sourceURL=component-event/index.js"
+};//@ sourceURL=component-event/index.js"
 ));
 require.register("component-matches-selector/index.js", Function("exports, require, module",
 "/**\n\
@@ -5388,7 +5324,6 @@ require.register("sldr/index.js", Function("exports, require, module",
 * Module dependencies\n\
  */\n\
 \n\
-var pad = require('pad');\n\
 var query = require('query');\n\
 var domify = require('domify');\n\
 var events = require('events');\n\
@@ -5691,11 +5626,6 @@ require.register("sldr/template.js", Function("exports, require, module",
 
 
 
-
-
-
-require.alias("component-pad/index.js", "sldr/deps/pad/index.js");
-require.alias("component-pad/index.js", "pad/index.js");
 
 require.alias("component-query/index.js", "sldr/deps/query/index.js");
 require.alias("component-query/index.js", "query/index.js");
