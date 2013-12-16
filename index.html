@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mnmly/sldr</title>
+    <link rel="stylesheet" href="/build/build.css" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <style type="text/css" media="all">
+      html, body{
+        margin: 0; padding: 0;
+        height: 100%;
+      }
+      h1{
+        font-size: 32px;
+        text-align: center;
+      }
+      .sldr{
+        width: 280px;
+        margin: 20px auto;
+      }
+      .sldr .wrap{
+        height: 50px;
+      }
+
+      #stage{
+        position: relative;
+        top: 50%;
+        margin-top: -180px;
+      }
+
+      /*#touch{
+        pointer-events: none;
+        position: absolute;
+        border-radius: 100%;
+        width: 30px;
+        height: 30px;
+        background-color: hsla(0, 0%, 0%, 0.1);
+        z-index: 5;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        -webkit-transition: .1s ease-out;
+      }
+
+      #touch.is-active{
+        opacity: 1;
+      }*/
+
+
+      footer { position: absolute; bottom: 0; width: 100%; text-align: center; }
+      footer small{ margin-top: 70px; margin-bottom: 70px; font-size: .9em; display: block; font-family: monospace; text-align: center; color: hsl(0, 0%, 40%); }
+      footer small a{ text-decoration: none; font-weight: bold; color: hsl(0, 0%, 20%); }
+    </style>
+  </head>
+  <body>
+    <div id="stage"></div>
+    <footer>
+      <small>by <a href="http://mnmly.com" target="_blank">mnmly</a> / grab it on <a href="http://github.com/mnmly/sldr/">github</a></small>
+    </footer>
+    <script type="text/javascript" src='/build/build.js'></script>
+    <script type="text/javascript" charset="utf-8">
+      var Sldr = require('sldr');
+      var translate = require('translate');
+      var stage = document.getElementById('stage');
+      // var touch = document.createElement('div');
+      var colors = ['#ECDF61', '#00A8D7', '#FF4D49'];
+
+      // touch.setAttribute('id', 'touch');
+      // document.body.appendChild(touch);
+      window.sliders = [];
+
+      colors.forEach(function(color, i){
+        var slider = window.slider = new Sldr();
+        stage.appendChild(slider.el);
+        sliders.push(slider);
+
+        slider.gaugeEl.style.backgroundColor = color;
+
+        slider.value(0);
+
+        var randomize = setInterval(function(){
+          slider.value(Math.random() * 100)
+        }, 2000);
+
+        var _touchstart = slider.touchstart;
+        slider.touchstart = function(){
+          clearTimeout(randomize);
+          // touch.classList.add('is-active');
+          _touchstart.apply(this, arguments);
+        }
+
+        // var _touchmove = slider.touchmove;
+        // slider.touchmove = function(e){
+        //   translate(touch, e.pageX - 15, e.pageY - 15);
+        //   _touchmove.apply(this, arguments);
+        // }
+        // var _touchend = slider.touchend;
+        // slider.touchend = function(e){
+        //   touch.classList.remove('is-active');
+        //   _touchend.apply(this, arguments);
+        // }
+        
+
+      });
+    </script>
+  </body>
+</html>
