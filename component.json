@@ -5,7 +5,6 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "component/pad": "*",
     "component/query": "*",
     "component/domify": "*",
     "component/emitter": "*",

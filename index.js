@@ -2,7 +2,6 @@
 * Module dependencies
  */
 
-var pad = require('pad');
 var query = require('query');
 var domify = require('domify');
 var events = require('events');

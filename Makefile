@@ -15,6 +15,6 @@ clean:
 	rm -fr dist build components template.js
 
 dist: build
-	@component build --use component-styl --standalone Slidr -o dist -n slidr.dist
+	@component build --use component-styl --standalone Sldr -o dist -n sldr.dist
 
 .PHONY: clean
