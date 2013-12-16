@@ -1,7 +1,11 @@
 
 # Sldr
 
-  Another minimal slider just because default range UI is always difficult to tweak... :[
+  Another minimal slider just because default range UI is always difficult to tweak..
+  
+  ![](http://f.cl.ly/items/3V1j1T3C03301M202q04/sldr-crop.gif)
+
+  ☞ [Demo](http://mnmly.github.io/sldr/)
 
 
 ## Installation
