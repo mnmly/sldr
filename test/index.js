@@ -50,15 +50,36 @@ describe('Sldr', function(){
 
     });
 
+    it('should not emit change event when skipEmit is true', function(done){
+
+      var self = this;
+      var called = false;
+
+      this.slider.skipEmit = true;
+
+      this.slider.on('change', function(val){
+        called = true;
+      });
+
+      setTimeout(function(){
+        called.should.not.be.ok;
+        done();
+      }, 100);
+
+      this.slider.value(100);
+
+    });
+
+
     it('should calculate percentage value', function(){
 
-      this.slider.max = 50;
-      this.slider.min = -50;
+      this.slider.max(50);
+      this.slider.min(-50);
       this.slider.value(0);
       this.slider.percentage().should.equal(50);
       
-      this.slider.max = 100;
-      this.slider.min = 50;
+      this.slider.max(100);
+      this.slider.min(50);
       this.slider.value(100);
       this.slider.percentage().should.equal(100);
 

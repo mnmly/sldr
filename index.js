@@ -39,6 +39,7 @@ function Sldr(value, min, max){
   this._min = min || 0;
   this._max = max || 100;
   this._value = constrain(value || 0, this._min, this._max);
+  this.skipEmit = false;
 
   this.bind();
 }
@@ -166,6 +167,7 @@ Sldr.prototype.positionLabel = function() {
  * Get or set `value`
  *
  * @param {Number} value to set
+ * @param {Boolean} noEmit
  * @api public
  */
 
@@ -173,7 +175,7 @@ Sldr.prototype.value = function(val) {
   if (arguments.length) {
     this._value = constrain(val, this._min, this._max);
     this.update();
-    this.emit('change', this._value);
+    if(!this.skipEmit) this.emit('change', this._value);
   } else {
     return this._value;
   }

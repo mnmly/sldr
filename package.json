@@ -1,5 +1,6 @@
 {
   "name": "sldr",
+  "version": "0.0.2",
   "dependencies": {
     "component-builder": "~0.10.0",
     "component-styl": "~1.2.4"
