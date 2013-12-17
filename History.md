@@ -1,7 +1,7 @@
 
 0.0.2 / 2013-12-16 
 ==================
-  * Add `skipEmit` to prevent event emittion
+  * Add `skipEmit` to prevent event emission
 
 0.0.1 / 2013-12-15
 ==================
